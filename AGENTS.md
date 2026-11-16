@@ -4,7 +4,7 @@
 
 - This project is a Raycast extension for quickly opening [Metrix.Bar](https://metrix.bar/) dashboards.
 - Dashboards run in the local native Metrix.Bar app. Verify how to open a dashboard before implementing an integration; opening the website homepage does not complete dashboard integration.
-- The extension entry point is `src/search-dashboards.tsx`, which uses Raycast's native list UI. See `README.md` for installation and configuration.
+- The extension entry point is `src/search-dashboards.tsx`, which uses Raycast's native list UI. See `README.md` for app setup and configuration.
 - Use English for project documentation, user-facing text, issues, and pull requests. Write this file, `README.md`, and `CHANGELOG.md` in English.
 
 ## Toolchain
@@ -24,7 +24,7 @@
 - `vp run lint`: check the Raycast manifest, icons, ESLint rules, and Prettier formatting.
 - `vp run typecheck`: run `tsc --noEmit` independently.
 - `vp test --run`: run all behavior tests. Use `vp test --run test/metrix.test.ts` for a single test file.
-- If `vp` is not installed globally, use the corresponding npm scripts in `README.md` to invoke the project's local Vite+ installation.
+- If `vp` is not installed globally, use the corresponding npm scripts, such as `npm run dev`, `npm run build`, and `npm test`, to invoke the project's local tools.
 
 ## Validation Requirements
 
@@ -43,6 +43,14 @@
 - If the integration needs a token, use a Raycast `password` preference. Do not read the app's private configuration to find credentials or include tokens in logs or response messages.
 - Keep `package-lock.json` and do not introduce lockfiles for other package managers. Exclude `node_modules/`, `dist/`, `raycast-env.d.ts`, and test and tool caches through `.gitignore`. Do not commit generated artifacts.
 - Allowed npm install scripts are pinned by version in `package.json` under `allowScripts`. When updating esbuild, review its install script and update the permission, then validate `npm ci` and the production build.
+
+## Store Submission
+
+- Keep `README.md` focused on features, app setup, preferences, shortcuts, and troubleshooting. Do not include source installation or development instructions in the Store README.
+- Raycast manages extension versions. Do not declare a manifest `version`; the initial release is recorded in `CHANGELOG.md`.
+- Retain `LICENSE` in this source repository, but exclude it, `AGENTS.md`, and `.github/` from the Raycast submission. The official extensions repository provides the MIT license.
+- Use Raycast's generated `Preferences` type with `getPreferenceValues`. Add placeholders to text and password preferences.
+- Keep custom shortcuts after the first two actions. Store screenshots belong in `metadata/` and must use sample data captured from the native Raycast UI with Capture Window.
 
 ## Official References
 
